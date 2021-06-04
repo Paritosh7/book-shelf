@@ -1,5 +1,13 @@
 import React from "react";
+
+/**
+ * books -> prop from Home, contains all the shelved books
+ * handleShelf -> callback function - used on shelf change.
+ */
 function CurrentlyReading({ books, handleShelf }) {
+  /**
+   * An IIFE function to filter books based on book shelf value
+   */
   const current = (function myComponentBooks() {
     return books.filter((book) => book.shelf === "currentlyReading");
   })();
@@ -40,7 +48,7 @@ function CurrentlyReading({ books, handleShelf }) {
                   </div>
                 </div>
                 <div className="book-title">{book.title}</div>
-                <div className="book-authors">{book.authors}</div>
+                <div className="book-authors">{book.authors || "Someone"}</div>
               </div>
             </li>
           ))

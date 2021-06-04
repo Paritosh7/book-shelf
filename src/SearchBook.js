@@ -13,7 +13,11 @@ function SearchBook() {
     });
   }
 
-  (function() {
+  /**
+   * maintainAppShelfState maintains the shelf state of the books
+   * across the Home and Search page. Using and IIFE here!
+   */
+  (function maintainAppShelfState() {
     console.log("searchBook being called");
     if (!searchedBooks.length) return;
 
@@ -38,12 +42,19 @@ function SearchBook() {
     [inputVal]
   );
 
+  /** set the input state based on change in the input
+   * which rerenders the SearchBook Component.
+   */
   function handleInput(eve) {
     setInputVal(eve.target.value);
   }
 
+  /**
+   * update the user's book shelf by calling update
+   * when book's shelf information is changed inside
+   * select tag.
+   */
   function handleShelfChange(book, eve) {
-    console.log(book.shelf);
     update(book, eve.target.value);
   }
 
@@ -97,7 +108,9 @@ function SearchBook() {
                     </div>
                   </div>
                   <div className="book-title">{book.title}</div>
-                  <div className="book-authors">{book.authors}</div>
+                  <div className="book-authors">
+                    {book.authors || "Someone"}
+                  </div>
                 </div>
               </li>
             ))

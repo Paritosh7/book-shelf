@@ -4,14 +4,22 @@ import WantToRead from "./WantToRead";
 import Read from "./Read";
 import { Link } from "react-router-dom";
 import { getAll, update } from "./BooksAPI";
+
 function Home() {
   const [books, setBooks] = useState(() => []);
 
+  /** called to get shelved books of the user  */
   async function fetchBooks() {
     const books = await getAll();
     setBooks(books);
   }
 
+  /**
+   * A callback function,
+   * called when a book's shelf is changed which
+   * further cause a rerender by setting the books
+   * using setBooks
+   */
   function handleShelfChange(book, shelf) {
     update(book, shelf)
       .then(() => {
