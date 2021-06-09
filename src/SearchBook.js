@@ -18,16 +18,11 @@ function SearchBook() {
    * across the Home and Search page. Using and IIFE here!
    */
   (function maintainAppShelfState() {
-    console.log("searchBook being called");
     if (!searchedBooks.length) return;
 
     shelvedBooks.forEach((shelvedBook) => {
       let foundBook = searchedBooks.find((book) => book.id === shelvedBook.id);
-      if (foundBook) {
-        foundBook.shelf = shelvedBook.shelf;
-        console.log(foundBook);
-        console.log(searchedBooks);
-      }
+      if (foundBook) foundBook.shelf = shelvedBook.shelf;
     });
   })();
 
@@ -92,7 +87,7 @@ function SearchBook() {
                     />
                     <div className="book-shelf-changer">
                       <select
-                        value={book.shelf ? book.shelf : ""}
+                        value={book.shelf ? book.shelf : "none"}
                         onChange={(eve) => handleShelfChange(book, eve)}
                       >
                         <option value="" disabled>

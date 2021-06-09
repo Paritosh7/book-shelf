@@ -30,6 +30,9 @@ function Home() {
 
   useEffect(() => {
     fetchBooks();
+    return () => {
+      setBooks([]);
+    };
   }, []);
 
   return (
